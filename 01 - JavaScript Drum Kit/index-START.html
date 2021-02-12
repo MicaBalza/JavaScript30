@@ -3,48 +3,179 @@
 <head>
   <meta charset="UTF-8">
   <title>JS Drum Kit</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --clr-nightsky: #001233;
+      --clr-cloudy-nightsky: #3A405A;
+      --clr-marie-antoinette: #B27092;
+      --clr-marie-antoinette-baby: #E7CEE3;
+      --clr-mermaid-tail: #7AE7C7;
+    }
+    *, *::before, *::after {box-sizing: border-box; margin: 0}
+    a {
+      text-decoration: none;
+      color: var(--clr-marie-antoinette-baby)
+    }
+    .content {
+      height: 100vh;
+      background: var(--clr-nightsky);
+      color: white;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+    }
+    header {
+      padding-top: 4rem;
+      color: var(--clr-marie-antoinette-baby)
+    }
+    main {
+      margin: 0 auto;
+      display: grid;
+      place-items: center;
+    }
+    footer {
+      font-size: 0.75rem;
+      color: var(--clr-marie-antoinette);
+      padding-bottom: 1rem;
+    }
+    .keys {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      gap: 2rem;
+      width: 50vw;
+      max-width: 600px;
+      height: 50vw;
+      max-height: 600px;
+    }
+    .key {
+      border-radius: 100%;
+      display: grid;
+      place-items: center center;
+      transition: all .07s ease;
+      background: var(--clr-nightsky);
+      border: 1px solid var(--clr-marie-antoinette);
+    }
+    kbd {
+      color: var(--clr-mermaid-tail);
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+    }
+    .sound {
+      font-size: 8px;
+      display: none;
+    }
+    /* .key:nth-child(1) {
+      
+      grid-column: 2 / 4;
+      grid-row: span 2;
+    }
+    .key:nth-child(2) {
+      
+      grid-column: 4 / 6;
+      grid-row: 3 ;
+    }
+    .key:nth-child(3) {
+      
+      grid-column: span 2;
+      grid-row: 7 / 9;
+    }
+    .key:nth-child(4) {
+      
+      grid-column: span 3;
+      grid-row: 4;
+    }
+    .key:nth-child(5) {
+      
+      grid-column: 7;
+      grid-row: 6;
+    }
+    .key:nth-child(6) {
+      
+      grid-column: 5 / 7;
+      grid-row: 9;
+    }
+    .key:nth-child(7) {
+      
+      grid-column: 4 / 6;
+      grid-row: 6 / 8;
+    }
+    .key:nth-child(8) {
+      
+      grid-column: 6 / span 3;
+      grid-row: 2 / span 3;
+    }
+    .key:nth-child(9) {
+      
+      grid-column: 9;
+      grid-row: 8;
+    } */
+
+    .playing {
+      transform: scale(1.1);
+      border: 2px solid var(--clr-marie-antoinette);
+      box-shadow: 0 0 1rem var(--clr-marie-antoinette-baby);
+      background: var(--clr-mermaid-tail);
+    }
+
+    .playing kbd {
+      color: var(--clr-nightsky)
+    }
+
+  </style>
 </head>
 <body>
-
-
-  <div class="keys">
-    <div data-key="65" class="key">
-      <kbd>A</kbd>
-      <span class="sound">clap</span>
-    </div>
-    <div data-key="83" class="key">
-      <kbd>S</kbd>
-      <span class="sound">hihat</span>
-    </div>
-    <div data-key="68" class="key">
-      <kbd>D</kbd>
-      <span class="sound">kick</span>
-    </div>
-    <div data-key="70" class="key">
-      <kbd>F</kbd>
-      <span class="sound">openhat</span>
-    </div>
-    <div data-key="71" class="key">
-      <kbd>G</kbd>
-      <span class="sound">boom</span>
-    </div>
-    <div data-key="72" class="key">
-      <kbd>H</kbd>
-      <span class="sound">ride</span>
-    </div>
-    <div data-key="74" class="key">
-      <kbd>J</kbd>
-      <span class="sound">snare</span>
-    </div>
-    <div data-key="75" class="key">
-      <kbd>K</kbd>
-      <span class="sound">tom</span>
-    </div>
-    <div data-key="76" class="key">
-      <kbd>L</kbd>
-      <span class="sound">tink</span>
-    </div>
+  <div class="content">
+    <header>
+      <h1>Drum Kit</h1>
+    </header>
+    
+    <main>
+      <div class="keys">
+        <div data-key="65" class="key">
+          <kbd>A</kbd>
+          <span class="sound">clap</span>
+        </div>
+        <div data-key="83" class="key">
+          <kbd>S</kbd>
+          <span class="sound">hihat</span>
+        </div>
+        <div data-key="68" class="key">
+          <kbd>D</kbd>
+          <span class="sound">kick</span>
+        </div>
+        <div data-key="70" class="key">
+          <kbd>F</kbd>
+          <span class="sound">openhat</span>
+        </div>
+        <div data-key="71" class="key">
+          <kbd>G</kbd>
+          <span class="sound">boom</span>
+        </div>
+        <div data-key="72" class="key">
+          <kbd>H</kbd>
+          <span class="sound">ride</span>
+        </div>
+        <div data-key="74" class="key">
+          <kbd>J</kbd>
+          <span class="sound">snare</span>
+        </div>
+        <div data-key="75" class="key">
+          <kbd>K</kbd>
+          <span class="sound">tom</span>
+        </div>
+        <div data-key="76" class="key">
+          <kbd>L</kbd>
+          <span class="sound">tink</span>
+        </div>
+      </div>
+    </main>
+    <footer>
+      <p>From <a href="https://javascript30.com/">Javascript30</a></p>
+      <p>A FREE course by <a href="https://wesbos.com/">Wes Bos</a> <3</p>
+    </footer>
   </div>
 
   <audio data-key="65" src="sounds/clap.wav"></audio>
@@ -58,6 +189,26 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
+
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const pressedKey = document.querySelector(`.key[data-key="${e.keyCode}"]`);
+
+    if(!audio) return;
+    audio.currentTime = 0;
+    audio.play()
+    
+    pressedKey.classList.add("playing");
+  };
+
+  function removeTransition(e) {
+    if (e.propertyName !== 'transform') return;
+    this.classList.remove("playing");
+  }
+
+  window.addEventListener('keydown', playSound);
+  const keys = document.querySelectorAll('.key');
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
 
 </script>
 
